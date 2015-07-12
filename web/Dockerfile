@@ -15,7 +15,7 @@ ENV PATH=$PATH:/opt/rubies/ruby-2.2.2/bin
 ## Prevent reverse DNS lookup because it introduces serious latency.
 RUN sed -i "s/\(:DoNotReverseLookup\s*=>\s*\)nil/\1true/" /opt/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/config.rb
 
-RUN gem install bundler
+RUN gem install bundler rerun
 EXPOSE 80
 
 ## Check out the most recent version of the codebase.
@@ -24,4 +24,5 @@ RUN mkdir -p /var/www/ &&\
     bundle install --gemfile /var/www/illuminati/Gemfile
 
 VOLUME /var/www/illuminati
-CMD ["rackup", "/var/www/illuminati/config.ru"]
+WORKDIR /var/www/illuminati
+CMD ["rerun", "rackup"]

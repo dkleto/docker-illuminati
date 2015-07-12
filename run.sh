@@ -38,7 +38,7 @@ for CONTAINER in $webcont
         fi
     done
 
-sudo docker run -d --name $webcont $commontime -v `pwd`/www:$sitedir -t -i $dockreg/$webimage /bin/bash
+sudo docker run -d --name $webcont $commontime -v `pwd`/www:$sitedir -t $dockreg/$webimage
 
 
 ## Cook hosts files according to config
