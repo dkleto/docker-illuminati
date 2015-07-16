@@ -40,7 +40,7 @@ for CONTAINER in $webcont $mongocont
         fi
     done
 
-sudo docker run -d --name $mongocont $commontime -t $dockreg/$mongoimage
+sudo docker run -d --name $mongocont $commontime -v `pwd`/mongodata:/data/db -t $dockreg/$mongoimage --noprealloc
 sudo docker run -d --name $webcont $commontime --link $mongocont:$mongocont -v `pwd`/www:$sitedir -t $dockreg/$webimage
 
 
