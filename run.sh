@@ -3,6 +3,8 @@
 dockreg="adamr:5000"
 webimage="enlight-web"
 webcont="enlight_web"
+mongoimage="enlight-mongo"
+mongocont="enlight_mongo"
 sitedir="/var/www/illuminati"
 site_url="illuminati.local"
 
@@ -16,7 +18,7 @@ commontime=" -v /etc/localtime:/etc/localtime:ro "
 
 ## Check that the containers aren't already running
 running=0
-for CONTAINER in $webcont
+for CONTAINER in $webcont $mongocont
     do
         if `sudo docker ps | grep --quiet $CONTAINER`
             then
@@ -30,7 +32,7 @@ if [ $running = 1 ]
 fi
 
 ## Remove previous containers.
-for CONTAINER in $webcont
+for CONTAINER in $webcont $mongocont
     do
         if sudo docker ps -a | grep --quiet "$CONTAINER"
             then
@@ -38,7 +40,8 @@ for CONTAINER in $webcont
         fi
     done
 
-sudo docker run -d --name $webcont $commontime -v `pwd`/www:$sitedir -t $dockreg/$webimage
+sudo docker run -d --name $mongocont $commontime -t $dockreg/$mongoimage
+sudo docker run -d --name $webcont $commontime --link $mongocont:$mongocont -v `pwd`/www:$sitedir -t $dockreg/$webimage
 
 
 ## Cook hosts files according to config
