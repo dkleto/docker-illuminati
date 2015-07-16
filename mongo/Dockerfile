@@ -12,4 +12,4 @@ VOLUME /var/log/mongodb
 RUN mkdir -p /data/db
 VOLUME /data/db
 
-CMD ["/usr/bin/mongod"]
+CMD ["mongod", "--smallfiles"]
