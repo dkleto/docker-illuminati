@@ -21,8 +21,7 @@ EXPOSE 80
 ## Check out the most recent version of the codebase.
 RUN mkdir -p /var/www/ &&\
     git clone https://github.com/dkleto/illuminati.git /var/www/illuminati &&\
-    bundle install --gemfile /var/www/illuminati/Gemfile &&\
-    echo `date`
+    bundle install --gemfile /var/www/illuminati/Gemfile
 
 VOLUME /var/www/illuminati
 WORKDIR /var/www/illuminati
