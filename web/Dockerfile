@@ -23,6 +23,9 @@ RUN mkdir -p /var/www/ &&\
     git clone https://github.com/dkleto/illuminati.git /var/www/illuminati &&\
     bundle install --gemfile /var/www/illuminati/Gemfile
 
+RUN useradd illuminati
+USER illuminati
+
 VOLUME /var/www/illuminati
 WORKDIR /var/www/illuminati
 CMD ["rerun", "rackup"]
