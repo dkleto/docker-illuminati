@@ -46,10 +46,10 @@ case $1 in
     sudo docker run --name $webcont $commontime --link $mongocont:$mongocont -v `pwd`/www:$sitedir -t -i $dockreg/$webimage /opt/rubies/ruby-2.2.2/bin/rspec
     sudo docker kill enlight_web enlight_mongo
     exit
-    sudo docker run -d --name $mongocont $commontime -v `pwd`/mongodata:/data/db -t $dockreg/$mongoimage --noprealloc
-    sudo docker run -d --name $webcont $commontime --link $mongocont:$mongocont -v `pwd`/www:$sitedir -t $dockreg/$webimage
     ;;
     *)
+    sudo docker run -d --name $mongocont $commontime -v `pwd`/mongodata:/data/db -t $dockreg/$mongoimage --noprealloc
+    sudo docker run -d --name $webcont $commontime --link $mongocont:$mongocont -v `pwd`/www:$sitedir -t $dockreg/$webimage
 esac
 
 
