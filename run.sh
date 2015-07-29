@@ -49,7 +49,7 @@ case $1 in
     ;;
     *)
     sudo docker run -d --name $mongocont $commontime -v `pwd`/mongodata:/data/db -t $dockreg/$mongoimage --noprealloc
-    sudo docker run -d --name $webcont $commontime --link $mongocont:$mongocont -v `pwd`/www:$sitedir -t $dockreg/$webimage
+    sudo docker run -d --name $webcont $commontime -p 80:9292 --link $mongocont:$mongocont -v `pwd`/www:$sitedir -t $dockreg/$webimage
 esac
 
 
