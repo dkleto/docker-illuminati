@@ -6,7 +6,6 @@ webcont="enlight_web"
 mongoimage="enlight-mongo"
 mongocont="enlight_mongo"
 sitedir="/var/www/illuminati"
-site_url="illuminati.local"
 
 declare -A hostcookery
 hostcookery=(
@@ -51,22 +50,3 @@ case $1 in
     sudo docker run -d --name $mongocont $commontime -v `pwd`/mongodata:/data/db -t $dockreg/$mongoimage --noprealloc
     sudo docker run -d --name $webcont $commontime -p 80:9292 --link $mongocont:$mongocont -v `pwd`/www:$sitedir -t $dockreg/$webimage
 esac
-
-
-## Cook hosts files according to config
-for COOK in "${!hostcookery[@]}"
-    do
-    web_ip=`sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${hostcookery[$COOK]}`
-    ## We need to escape periods.
-    site_url_esc=`echo $COOK | sed -e 's/\./\\\./g'`
-    web_ip_esc=`echo $web_ip | sed -e 's/\./\\\./g'`
-
-    ## If the URL is already present, change the IP. If not, add an entry for it.
-    if grep --quiet $COOK /etc/hosts;  then
-        regex="-i 's/^.*$site_url_esc.*$/$web_ip_esc $site_url_esc/' /etc/hosts"
-        eval sudo sed "$regex"
-    else
-        echo "## ${hostcookery[$COOK]} container" | sudo tee -a /etc/hosts
-        echo "$web_ip $COOK" | sudo tee -a /etc/hosts
-    fi
-    done
