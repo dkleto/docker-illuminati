@@ -7,11 +7,6 @@ mongoimage="enlight-mongo"
 mongocont="enlight_mongo"
 sitedir="/var/www/illuminati"
 
-declare -A hostcookery
-hostcookery=(
-    ["$site_url"]="$webcont"
-)
-
 ## Sync time across all containers with the host system
 commontime=" -v /etc/localtime:/etc/localtime:ro "
 
