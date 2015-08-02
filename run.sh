@@ -37,7 +37,7 @@ for CONTAINER in $webcont $mongocont
 case $1 in
     test)
     sudo docker run -d --name $mongocont $commontime -v `pwd`/mongodata:/data/db -t $dockreg/$mongoimage
-    sudo docker run --name $webcont $commontime --link $mongocont:$mongocont -v `pwd`/www:$sitedir -t -i $dockreg/$webimage /opt/rubies/ruby-2.2.2/bin/rspec
+    sudo docker run --name $webcont $commontime --link $mongocont:$mongocont -v `pwd`/www:$sitedir -t -i $dockreg/$webimage bundle exec rspec
     sudo docker kill enlight_web enlight_mongo
     exit
     ;;
