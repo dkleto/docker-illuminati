@@ -20,8 +20,9 @@ EXPOSE 80
 
 ## Check out the most recent version of the codebase.
 RUN mkdir -p /var/www/ &&\
-    git clone https://github.com/dkleto/illuminati.git /var/www/illuminati &&\
-    bundle install --gemfile /var/www/illuminati/Gemfile
+    git clone https://github.com/dkleto/illuminati.git /var/www/illuminati
+RUN cd /var/www/illuminati &&\
+    bundle install --jobs=3 --retry=3
 
 RUN useradd illuminati
 USER illuminati
