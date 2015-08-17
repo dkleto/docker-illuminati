@@ -24,9 +24,11 @@ RUN mkdir -p /var/www/ &&\
 RUN cd /var/www/illuminati &&\
     bundle install --jobs=3 --retry=3
 
-RUN useradd illuminati
+RUN useradd -U illuminati &&\
+    mkdir -p /var/log/sitelogs/illuminati &&\
+    chown -R illuminati:illuminati /var/log/sitelogs/
 USER illuminati
 
-VOLUME /var/www/illuminati
+VOLUME [/var/www/illuminati, /var/log/sitelogs/illuminati]
 WORKDIR /var/www/illuminati
 CMD ["rerun", "rackup"]
