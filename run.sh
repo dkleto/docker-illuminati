@@ -1,10 +1,10 @@
 #! /bin/bash
 
 dockreg="adamr:5000"
-webimage="enlight-web"
-webcont="enlight_web"
-mongoimage="enlight-mongo"
-mongocont="enlight_mongo"
+webimage="illuminati-web"
+webcont="illuminati_web"
+mongoimage="illuminati-mongo"
+mongocont="illuminati_mongo"
 sitedir="/var/www/illuminati"
 
 ## Sync time across all containers with the host system
@@ -38,7 +38,7 @@ case $1 in
                 done
             sudo docker run -d --name $mongocont $commontime -v `pwd`/mongodata:/data/db -t $dockreg/$mongoimage
             sudo docker run --name $webcont $commontime --link $mongocont:$mongocont -v `pwd`/www:$sitedir -t -i $dockreg/$webimage bundle exec rspec
-            sudo docker kill enlight_web enlight_mongo
+            sudo docker kill illuminati_web illuminati_mongo
             exit
         fi
     exit
