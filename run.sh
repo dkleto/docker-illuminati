@@ -43,6 +43,12 @@ case $1 in
         fi
     exit
     ;;
+    stop)
+        if [ $running = 1 ]; then
+            sudo docker kill $webcont $mongocont
+        fi
+    exit
+    ;;
     *)
 
 if [ $running = 1 ]; then
