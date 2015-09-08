@@ -49,7 +49,13 @@ case $1 in
         fi
     exit
     ;;
-    *)
+    restart)
+        if [ $running = 1 ]; then
+            running=0
+            sudo docker kill $webcont $mongocont
+        fi
+    ;;
+esac
 
 if [ $running = 1 ]; then
     exit
@@ -66,4 +72,3 @@ for CONTAINER in $webcont $mongocont
 
 sudo docker run -d --name $mongocont $commontime -v `pwd`/mongodata:/data/db -t $dockreg/$mongoimage
 sudo docker run -d --name $webcont $commontime -p 80:9292 --link $mongocont:$mongocont -v `pwd`/www:$sitedir -t $dockreg/$webimage
-esac
