@@ -8,7 +8,7 @@ RUN apt-get update &&\
 RUN git clone https://github.com/postmodern/ruby-install.git /tmp/ruby-install &&\
     cd /tmp/ruby-install/ &&\
     make install &&\
-    ruby-install ruby
+    ruby-install ruby 2.2.2
 
 ENV PATH=$PATH:/opt/rubies/ruby-2.2.2/bin
 
