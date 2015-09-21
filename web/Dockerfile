@@ -16,7 +16,7 @@ ENV PATH=$PATH:/opt/rubies/ruby-2.2.2/bin
 RUN sed -i "s/\(:DoNotReverseLookup\s*=>\s*\)nil/\1true/" /opt/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/config.rb
 
 RUN gem install bundler rerun
-EXPOSE 80
+EXPOSE 9292
 
 ## Check out the most recent version of the codebase.
 RUN mkdir -p /var/www/ &&\
