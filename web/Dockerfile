@@ -25,6 +25,7 @@ RUN cd /var/www/illuminati &&\
     bundle install --jobs=3 --retry=3
 
 RUN useradd -U illuminati &&\
+    mkdir -p /home/illuminati/ &&\
     mkdir -p /var/log/sitelogs/illuminati &&\
     chown -R illuminati:illuminati /var/log/sitelogs/
 USER illuminati
