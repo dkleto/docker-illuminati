@@ -71,4 +71,4 @@ for CONTAINER in $webcont $mongocont
     done
 
 sudo docker run -d --name $mongocont $commontime -v `pwd`/mongodata:/data/db -t $dockreg/$mongoimage
-sudo docker run -d --name $webcont $commontime -p 9292:9292 --link $mongocont:$mongocont -v `pwd`/www:$sitedir -t $dockreg/$webimage
+sudo docker run -d --name $webcont $commontime -p 9292:9292 --link $mongocont:$mongocont -v `pwd`/www:$sitedir -v `pwd`/home:/home/illuminati -t $dockreg/$webimage
