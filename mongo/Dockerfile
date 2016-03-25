@@ -1,4 +1,4 @@
-FROM mongo:latest
+FROM resin/rpi-raspbian
 MAINTAINER adamr <adamr@catalyst-au.net>
 
 VOLUME /data/db

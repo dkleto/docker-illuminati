@@ -1,9 +1,9 @@
-FROM ubuntu:latest
+FROM resin/rpi-raspbian
 MAINTAINER adamr <adamr@catalyst-au.net>
 
 
 RUN apt-get update &&\
-    apt-get install -yf git curl gcc make
+    apt-get install -yf git curl gcc make ca-certificates
 
 RUN git clone https://github.com/postmodern/ruby-install.git /tmp/ruby-install &&\
     cd /tmp/ruby-install/ &&\
