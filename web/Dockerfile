@@ -8,12 +8,12 @@ RUN apt-get update &&\
 RUN git clone https://github.com/postmodern/ruby-install.git /tmp/ruby-install &&\
     cd /tmp/ruby-install/ &&\
     make install &&\
-    ruby-install ruby 2.2.2
+    ruby-install ruby 2.2.4
 
-ENV PATH=$PATH:/opt/rubies/ruby-2.2.2/bin
+ENV PATH=$PATH:/opt/rubies/ruby-2.2.4/bin
 
 ## Prevent reverse DNS lookup because it introduces serious latency.
-RUN sed -i "s/\(:DoNotReverseLookup\s*=>\s*\)nil/\1true/" /opt/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/config.rb
+RUN sed -i "s/\(:DoNotReverseLookup\s*=>\s*\)nil/\1true/" /opt/rubies/ruby-2.2.4/lib/ruby/2.2.0/webrick/config.rb
 
 RUN gem install bundler rerun
 EXPOSE 9292
