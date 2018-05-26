@@ -1,6 +1,6 @@
 #! /bin/bash
 
-dockreg="adamr:5000"
+dockreg="adamr"
 webimage="illuminati-web"
 webcont="illuminati_web"
 mongoimage="illuminati-mongo"
