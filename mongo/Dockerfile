@@ -5,4 +5,4 @@ VOLUME /data/db
 
 EXPOSE 27017
 
-CMD ["usr/bin/mongod", "--smallfiles", "--noprealloc"]
+CMD ["usr/bin/mongod", "--smallfiles", "--noprealloc", "--bind_ip_all"]
