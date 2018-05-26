@@ -26,6 +26,7 @@ RUN cd /var/www/illuminati &&\
 
 RUN useradd -U illuminati &&\
     mkdir -p /home/illuminati/ &&\
+    chown -R illuminati:illuminati /home/illuminati/ &&\
     mkdir -p /var/log/sitelogs/illuminati &&\
     chown -R illuminati:illuminati /var/log/sitelogs/
 USER illuminati
